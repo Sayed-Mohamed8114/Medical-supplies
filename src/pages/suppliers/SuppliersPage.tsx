@@ -1,12 +1,16 @@
 import DashboardLayout from "@/mainLayout/DashboardLayout";
 import MainHeading from "@/components/layout/MainHeading";
+<<<<<<< HEAD
 import TableSection from "@/components/ui/Table";
 import BtnAddNew from "@/components/ui/BtnAddNew";
 import BtnAddNewSm from "@/components/ui/BtnAddNewSm";
+=======
+>>>>>>> master
 
 const SuppliersPage = () => {
   return (
     <DashboardLayout>
+<<<<<<< HEAD
       <div className="flex justify-between items-center w-full">
         <MainHeading
           title="Suppliers Management"
@@ -69,6 +73,12 @@ const SuppliersPage = () => {
         />
         <BtnAddNewSm link="/supplier/new" />
       </section>
+=======
+      <MainHeading
+        title="Suppliers Management"
+        description="Manage your suppliers efficiently and effectively"
+      />
+>>>>>>> master
     </DashboardLayout>
   );
 };

@@ -14,5 +14,9 @@
       "@/*": ["src/*"]
     }
   },
+<<<<<<< HEAD
   "include": ["src", "@"]
+=======
+  "include": ["src"]
+>>>>>>> master
 }
