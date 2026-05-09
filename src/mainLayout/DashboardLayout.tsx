@@ -6,10 +6,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <section>
       <SidebarLg />
-      <div className="ms-0 md:ms-[200px]">
+      <div className="ms-0 md:ms-50">
         <Topbar />
 
-        <div className="mt-[65px] p-8 bg-[#F3F3FE] h-[calc(100vh-65px)]">
+        <div className="mt-12 p-8 bg-slate-50 h-[calc(100vh-65px)]">
           {children}
         </div>
       </div>

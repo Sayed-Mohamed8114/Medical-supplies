@@ -9,8 +9,8 @@ const MainHeading = ({
 }) => {
   return (
     <div className="flex flex-col items-start gap-2 mb-10">
-      <h1 className="text-[32px] font-bold text-[#000000]">{title}</h1>
-      <p className="text-[14px] text-[#7C808D] max-w-[300px]">{description}</p>
+      <h1 className="text-[32px] font-bold text-black">{title}</h1>
+      <p className="text-[14px] text-gray-500 max-w-125">{description}</p>
     </div>
   );
 };
