@@ -9,7 +9,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="ms-0 md:ms-[200px]">
         <Topbar />
 
-        <div className="mt-[65px] p-8 bg-[#F3F3FE] h-[calc(100vh-65px)]">
+        <div className="mt-[65px] p-8 bg-[#F3F3FE] min-h-[calc(100vh-65px)]">
           {children}
         </div>
       </div>

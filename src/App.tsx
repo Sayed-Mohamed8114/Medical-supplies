@@ -10,6 +10,7 @@ import StockInPage from "./pages/stock/StockInPage";
 import StockOutPage from "./pages/stock/StockOutPage";
 import AnalyticsPage from "./pages/analytics/AnalyticsPage";
 import NewSupplier from "./pages/new-supplier/NewSupplier";
+import NewCategory from "./pages/new-category/newCategory";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Route path="/supplier" element={<SuppliersPage />} />
       <Route path="/supplier/new" element={<NewSupplier />} />
       <Route path="/category" element={<CategoriesPage />} />
+      <Route path="/category/new" element={<NewCategory />} />
       <Route path="/stock-in" element={<StockInPage />} />
       <Route path="/stock-out" element={<StockOutPage />} />
       <Route path="/setting" element={<SettingPage />} />

@@ -12,12 +12,62 @@ const SuppliersPage = () => {
           title="Suppliers Management"
           description="Manage your suppliers efficiently and effectively"
         />
-        <BtnAddNew />
+        <BtnAddNew content="Add New Supplier" link="/supplier/new" />
       </div>
 
       <section className="relative pb-[100px]">
-        <TableSection />
-        <BtnAddNewSm />
+        <TableSection
+          headers={[
+            { id: "name", name: "Name" },
+            { id: "email", name: "Email" },
+            { id: "items", name: "Items" },
+            { id: "status", name: "Status" },
+            { id: "actions", name: "Actions" },
+          ]}
+          bodyData={[
+            {
+              id: "1",
+              name: "BioMed Solutions Inc.",
+              email: "orders@biomed.com",
+              items: "48 items",
+              status: "Active",
+              actions: "Actions",
+            },
+            {
+              id: "2",
+              name: "BioMed Solutions Inc.",
+              email: "orders@biomed.com",
+              items: "48 items",
+              status: "Active",
+              actions: "Actions",
+            },
+            {
+              id: "3",
+              name: "BioMed Solutions Inc.",
+              email: "orders@biomed.com",
+              items: "48 items",
+              status: "Active",
+              actions: "Actions",
+            },
+            {
+              id: "4",
+              name: "BioMed Solutions Inc.",
+              email: "orders@biomed.com",
+              items: "48 items",
+              status: "Active",
+              actions: "Actions",
+            },
+            {
+              id: "5",
+              name: "BioMed Solutions Inc.",
+              email: "orders@biomed.com",
+              items: "48 items",
+              status: "Active",
+              actions: "Actions",
+            },
+          ]}
+        />
+        <BtnAddNewSm link="/supplier/new" />
       </section>
     </DashboardLayout>
   );
