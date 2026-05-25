@@ -1,16 +1,13 @@
 import DashboardLayout from "@/mainLayout/DashboardLayout";
 import MainHeading from "@/components/layout/MainHeading";
-<<<<<<< HEAD
+
 import TableSection from "@/components/ui/Table";
 import BtnAddNew from "@/components/ui/BtnAddNew";
 import BtnAddNewSm from "@/components/ui/BtnAddNewSm";
-=======
->>>>>>> master
 
 const SuppliersPage = () => {
   return (
     <DashboardLayout>
-<<<<<<< HEAD
       <div className="flex justify-between items-center w-full">
         <MainHeading
           title="Suppliers Management"
@@ -35,7 +32,6 @@ const SuppliersPage = () => {
               email: "orders@biomed.com",
               items: "48 items",
               status: "Active",
-              actions: "Actions",
             },
             {
               id: "2",
@@ -43,7 +39,6 @@ const SuppliersPage = () => {
               email: "orders@biomed.com",
               items: "48 items",
               status: "Active",
-              actions: "Actions",
             },
             {
               id: "3",
@@ -51,7 +46,6 @@ const SuppliersPage = () => {
               email: "orders@biomed.com",
               items: "48 items",
               status: "Active",
-              actions: "Actions",
             },
             {
               id: "4",
@@ -59,7 +53,6 @@ const SuppliersPage = () => {
               email: "orders@biomed.com",
               items: "48 items",
               status: "Active",
-              actions: "Actions",
             },
             {
               id: "5",
@@ -67,18 +60,11 @@ const SuppliersPage = () => {
               email: "orders@biomed.com",
               items: "48 items",
               status: "Active",
-              actions: "Actions",
             },
           ]}
         />
         <BtnAddNewSm link="/supplier/new" />
       </section>
-=======
-      <MainHeading
-        title="Suppliers Management"
-        description="Manage your suppliers efficiently and effectively"
-      />
->>>>>>> master
     </DashboardLayout>
   );
 };

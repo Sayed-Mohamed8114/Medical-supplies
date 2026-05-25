@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import DashboardLayout from "@/mainLayout/DashboardLayout";
 import React from "react";
 import MainHeading from "@/components/layout/MainHeading";
-=======
-import DashboardLayout from '@/mainLayout/DashboardLayout'
-import React from 'react'
-import MainHeading from '@/components/layout/MainHeading'
->>>>>>> master
 
 const SettingPage = () => {
   return (
@@ -15,7 +9,6 @@ const SettingPage = () => {
         title="Settings"
         description="Manage your settings and preferences"
       />
-<<<<<<< HEAD
 
       {/* Account Profile Section */}
       <div className="flex flex-col w-full gap-5 bg-white p-8 shadow-lg rounded-2xl  mx-auto md:max-w-2xl mb-10">
@@ -97,10 +90,3 @@ const SettingPage = () => {
 };
 
 export default SettingPage;
-=======
-    </DashboardLayout>
-  )
-}
-
-export default SettingPage
->>>>>>> master

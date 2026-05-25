@@ -1,17 +1,16 @@
 import DashboardLayout from "@/mainLayout/DashboardLayout";
 import React from "react";
 import MainHeading from "@/components/layout/MainHeading";
-<<<<<<< HEAD
+
 import BtnAddNew from "@/components/ui/BtnAddNew";
 import BtnAddNewSm from "@/components/ui/BtnAddNewSm";
 import TableSection from "@/components/ui/Table";
-=======
->>>>>>> master
+
 
 const CategoriesPage = () => {
   return (
     <DashboardLayout>
-<<<<<<< HEAD
+
       <div className="flex items-center justify-between">
         <MainHeading
           title="Categories Management"
@@ -50,12 +49,7 @@ const CategoriesPage = () => {
         />
         <BtnAddNewSm link="/category/new" />
       </section>
-=======
-      <MainHeading
-        title="Categories Management"
-        description="Manage your categories efficiently and effectively"
-      />
->>>>>>> master
+
     </DashboardLayout>
   );
 };

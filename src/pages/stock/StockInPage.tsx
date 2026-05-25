@@ -1,11 +1,9 @@
 import DashboardLayout from "@/mainLayout/DashboardLayout";
 import MainHeading from "@/components/layout/MainHeading";
-<<<<<<< HEAD
+
 import SelectItems from "@/components/ui/SelectItems";
 import { DatePickerDemo } from "@/components/ui/DatePicker";
 import { Textarea } from "@/shadcn_ui/components/ui/textarea";
-=======
->>>>>>> master
 
 const StockInPage = () => {
   return (
@@ -14,7 +12,6 @@ const StockInPage = () => {
         title="Stock In"
         description="Track and manage your stock ins"
       />
-<<<<<<< HEAD
 
       <div className="md:max-w-2xl flex flex-col gap-4 md:m-auto p-6 items-center bg-white rounded-md shadow-xl">
         {/* select + quantity */}
@@ -68,8 +65,6 @@ const StockInPage = () => {
           </button>
         </div>
       </div>
-=======
->>>>>>> master
     </DashboardLayout>
   );
 };
