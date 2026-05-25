@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+# Medical-supplies
+Medical supplies Management System 
+=======
+=======
+>>>>>>> master
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -71,3 +78,7 @@ export default defineConfig([
   },
 ])
 ```
+<<<<<<< HEAD
+>>>>>>> 7ec10a0 (build sidebar,topbar,dashboard(main heading,cards))
+=======
+>>>>>>> master

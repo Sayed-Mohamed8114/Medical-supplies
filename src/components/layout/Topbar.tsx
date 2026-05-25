@@ -2,7 +2,9 @@ import SidebarSm from "./SidebarSm";
 
 const Topbar = () => {
   return (
-    <header className="flex justify-between items-center fixed top-0 left-0 md:left-[200px] border-b border-b-[#C3C6D7] shadow-sm h-16 px-3 md:px-6 bg-white w-full">
+
+    <header className="z-100 flex justify-between items-center fixed top-0 left-0 md:left-[200px] border-b border-b-[#C3C6D7] shadow-sm h-16 px-3 md:px-6 bg-white w-full">
+
       <SidebarSm />
 
       <div className="flex items-center gap-4 absolute top-1/2 right-1 md:right-[220px] -translate-y-1/2">
