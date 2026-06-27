@@ -18,7 +18,7 @@ const CategoriesPage = () => {
         />
         <BtnAddNew content="Add New Category" link="/category/new" />
       </div>
-      <section className="relative pb-[100px]">
+      <section className="relative pb-25">
         <TableSection
           headers={[
             { id: "name", name: "Category Name" },

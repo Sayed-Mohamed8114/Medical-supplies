@@ -2,7 +2,7 @@ import DashboardLayout from "@/mainLayout/DashboardLayout";
 import CardBox from "./components/Card";
 import MainHeading from "@/components/layout/MainHeading";
 
-const DashboradPage = () => {
+const DashboardPage = () => {
   return (
     <DashboardLayout>
       <MainHeading
@@ -47,4 +47,4 @@ const DashboradPage = () => {
   );
 };
 
-export default DashboradPage;
+export default DashboardPage;

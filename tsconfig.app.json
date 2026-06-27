@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
     "composite": true,
     "noEmit": false,
     "types": ["node"],
@@ -14,5 +15,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "@"]
+  "include": ["src"]
 }

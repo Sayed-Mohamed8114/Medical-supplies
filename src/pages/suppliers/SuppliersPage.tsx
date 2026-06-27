@@ -16,7 +16,7 @@ const SuppliersPage = () => {
         <BtnAddNew content="Add New Supplier" link="/supplier/new" />
       </div>
 
-      <section className="relative pb-[100px]">
+      <section className="relative pb-25">
         <TableSection
           headers={[
             { id: "name", name: "Name" },

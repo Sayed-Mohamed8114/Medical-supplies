@@ -1,7 +1,6 @@
 import DashboardLayout from "@/mainLayout/DashboardLayout";
 import MainHeading from "@/components/layout/MainHeading";
 
-import { Textarea } from "@/shadcn_ui/components/ui/textarea";
 import { DatePickerDemo } from "@/components/ui/DatePicker";
 import SelectItems from "@/components/ui/SelectItems";
 

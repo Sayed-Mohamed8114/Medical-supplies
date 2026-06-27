@@ -12,6 +12,11 @@ import AnalyticsPage from "./pages/analytics/AnalyticsPage";
 import NewSupplier from "./pages/new-supplier/NewSupplier";
 import NewCategory from "./pages/new-category/newCategory";
 
+
+import RegisterPage from './pages/auth/RegisterPage';
+import ForgotPasswordPage from './pages/auth/ForgotPasswordPage';
+import { ResetPasswordPage } from "./pages/auth/ResetPasswordPage";
+
 const App = () => {
   return (
     <Routes>
@@ -26,6 +31,9 @@ const App = () => {
       <Route path="/setting" element={<SettingPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/analytic" element={<AnalyticsPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
     </Routes>
   );
 };
