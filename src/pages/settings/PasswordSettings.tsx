@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import { validatePasswordUpdate, PasswordErrors } from './settingsValidation';
 
+interface PasswordUpdateData {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
 interface PasswordSettingsProps {
-  onUpdate: (data: any) => Promise<void>;
+  onUpdate: (data: PasswordUpdateData) => Promise<void>;
   isLoading: boolean;
 }
 
 const PasswordSettings: React.FC<PasswordSettingsProps> = ({ onUpdate, isLoading }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<PasswordUpdateData>({
     currentPassword: '',
     newPassword: '',
     confirmPassword: '',

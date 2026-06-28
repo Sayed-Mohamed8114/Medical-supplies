@@ -15,7 +15,7 @@ const PreferencesSettings: React.FC<PreferencesSettingsProps> = ({
   const [localSettings, setLocalSettings] = useState(settings);
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleChange = (key: keyof PreferencesType, value: any) => {
+  const handleChange = (key: keyof PreferencesType, value: PreferencesType[keyof PreferencesType]) => {
     setLocalSettings(prev => ({ ...prev, [key]: value }));
   };
 

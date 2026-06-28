@@ -15,11 +15,22 @@ const ThemeSettings: React.FC<ThemeSettingsProps> = ({
   const [localSettings, setLocalSettings] = useState(settings);
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleChange = (
-    key: keyof ThemeSettingsType,
-    value: ThemeSettingsType[keyof ThemeSettingsType]
-  ) => {
-    setLocalSettings(prev => ({ ...prev, [key]: value }));
+  // ✅ Handle select change
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setLocalSettings(prev => ({ ...prev, [name]: value }));
+  };
+
+  // ✅ Handle checkbox change
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    setLocalSettings(prev => ({ ...prev, [name]: checked }));
+  };
+
+  // ✅ Handle radio change
+  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLocalSettings(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSave = async () => {
@@ -47,37 +58,38 @@ const ThemeSettings: React.FC<ThemeSettingsProps> = ({
       </div>
 
       <div className="space-y-4">
-        {/* Theme Mode */}
+        {/* Theme Mode - Radio Buttons */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Theme Mode
           </label>
           <div className="flex gap-4">
-            {['light', 'dark', 'system'].map((theme) => (
-              <label key={theme} className="flex items-center gap-2">
+            {['light', 'dark', 'system'].map((themeValue) => (
+              <label key={themeValue} className="flex items-center gap-2">
                 <input
                   type="radio"
                   name="theme"
-                  value={theme}
-                  checked={localSettings.theme === theme}
-                  onChange={() => handleChange('theme', theme)}
+                  value={themeValue}
+                  checked={localSettings.theme === themeValue}
+                  onChange={handleRadioChange}
                   disabled={!isEditing}
                   className="text-blue-600 focus:ring-blue-500"
                 />
-                <span className="capitalize">{theme}</span>
+                <span className="capitalize">{themeValue}</span>
               </label>
             ))}
           </div>
         </div>
 
-        {/* Font Size */}
+        {/* Font Size - Select */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Font Size
           </label>
           <select
+            name="fontSize"
             value={localSettings.fontSize}
-            onChange={(e) => handleChange('fontSize', e.target.value)}
+            onChange={handleSelectChange}
             disabled={!isEditing}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50"
           >
@@ -87,7 +99,7 @@ const ThemeSettings: React.FC<ThemeSettingsProps> = ({
           </select>
         </div>
 
-        {/* Sidebar Collapsed */}
+        {/* Sidebar Collapsed - Checkbox */}
         <div className="flex items-center justify-between py-2">
           <div>
             <p className="font-medium text-gray-800">Collapsed Sidebar</p>
@@ -96,16 +108,17 @@ const ThemeSettings: React.FC<ThemeSettingsProps> = ({
           <label className="relative inline-flex items-center cursor-pointer">
             <input
               type="checkbox"
+              name="sidebarCollapsed"
               checked={localSettings.sidebarCollapsed}
-              onChange={(e) => handleChange('sidebarCollapsed', e.target.checked)}
+              onChange={handleCheckboxChange}
               disabled={!isEditing}
               className="sr-only peer"
             />
-            <div className={`w-11 h-6 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all ${!isEditing && 'opacity-50'} ${localSettings.sidebarCollapsed ? 'bg-blue-600' : 'bg-gray-300'}`}></div>
+            <div className={`w-11 h-6 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all ${!isEditing && 'opacity-50'} ${localSettings.sidebarCollapsed ? 'bg-blue-600' : 'bg-gray-300'}`}></div>
           </label>
         </div>
 
-        {/* Compact View */}
+        {/* Compact View - Checkbox */}
         <div className="flex items-center justify-between py-2">
           <div>
             <p className="font-medium text-gray-800">Compact View</p>
@@ -114,12 +127,13 @@ const ThemeSettings: React.FC<ThemeSettingsProps> = ({
           <label className="relative inline-flex items-center cursor-pointer">
             <input
               type="checkbox"
+              name="compactView"
               checked={localSettings.compactView}
-              onChange={(e) => handleChange('compactView', e.target.checked)}
+              onChange={handleCheckboxChange}
               disabled={!isEditing}
               className="sr-only peer"
             />
-            <div className={`w-11 h-6 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all ${!isEditing && 'opacity-50'} ${localSettings.compactView ? 'bg-blue-600' : 'bg-gray-300'}`}></div>
+            <div className={`w-11 h-6 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all ${!isEditing && 'opacity-50'} ${localSettings.compactView ? 'bg-blue-600' : 'bg-gray-300'}`}></div>
           </label>
         </div>
       </div>

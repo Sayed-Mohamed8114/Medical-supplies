@@ -28,11 +28,19 @@ const LoginPage: React.FC = () => {
   const state = location.state as LocationState;
   const from = state?.from?.pathname || '/dashboard';
 
+  // Clear errors on unmount
   useEffect(() => {
     return () => {
       dispatch(clearError());
     };
   }, [dispatch]);
+
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(from, { replace: true });
+    }
+  }, [isAuthenticated, navigate, from]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,7 +53,6 @@ const LoginPage: React.FC = () => {
     if (Object.keys(errors).length === 0) {
       try {
         await dispatch(login({ email, password, rememberMe })).unwrap();
-        // ✅ أضف这段 كود - التوجيه للـ Dashboard
         navigate(from, { replace: true });
       } catch (err) {
         setLocalError(err as string);
@@ -103,7 +110,7 @@ const LoginPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm"
                 >
                   {showPassword ? 'Hide' : 'Show'}
                 </button>
@@ -143,6 +150,24 @@ const LoginPage: React.FC = () => {
             {isLoading ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
+
+        {/* ✅ Register Link - تحت الفورم */}
+        <div className="text-sm text-center">
+          <p className="text-gray-600">
+            Don't have an account?{' '}
+            <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
+              Create one now
+            </Link>
+          </p>
+        </div>
+
+        {/* Demo Accounts Info */}
+        <div className="text-xs text-center text-gray-500 border-t pt-4">
+          <p className="font-medium">Demo Accounts:</p>
+          <p>admin@medical.com / password123</p>
+          <p>manager@medical.com / password123</p>
+          <p>staff@medical.com / password123</p>
+        </div>
       </div>
     </div>
   );

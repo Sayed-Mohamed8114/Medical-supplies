@@ -2,12 +2,35 @@ import React, { useState, useEffect } from 'react';
 import ProfileImageUpload from './ProfileImageUpload';
 import { validateProfile, ProfileErrors } from './settingsValidation';
 
+interface ProfileFormData {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  department: string;
+  position: string;
+  bio: string;
+}
+
+interface ProfileData extends ProfileFormData {
+  email: string;
+  avatar?: string;
+}
+
 interface ProfileSettingsProps {
-  profile: any;
+  profile: ProfileData | null;
   isLoading: boolean;
-  onUpdate: (data: any) => Promise<void>;
+  onUpdate: (data: ProfileFormData) => Promise<void>;
   onUploadAvatar: (file: File) => Promise<void>;
 }
+
+const getFormDataFromProfile = (profileData: ProfileData | null): ProfileFormData => ({
+  firstName: profileData?.firstName || '',
+  lastName: profileData?.lastName || '',
+  phoneNumber: profileData?.phoneNumber || '',
+  department: profileData?.department || '',
+  position: profileData?.position || '',
+  bio: profileData?.bio || '',
+});
 
 const ProfileSettings: React.FC<ProfileSettingsProps> = ({
   profile,
@@ -15,33 +38,13 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
   onUpdate,
   onUploadAvatar,
 }) => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    department: '',
-    position: '',
-    bio: '',
-  });
+  const [formData, setFormData] = useState<ProfileFormData>(() => getFormDataFromProfile(profile));
   const [errors, setErrors] = useState<ProfileErrors>({});
   const [isEditing, setIsEditing] = useState(false);
 
-  useEffect(() => {
-    if (profile) {
-      setFormData({
-        firstName: profile.firstName || '',
-        lastName: profile.lastName || '',
-        phoneNumber: profile.phoneNumber || '',
-        department: profile.department || '',
-        position: profile.position || '',
-        bio: profile.bio || '',
-      });
-    }
-  }, [profile]);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name as keyof ProfileFormData]: value }));
     if (errors[name as keyof ProfileErrors]) {
       setErrors(prev => ({ ...prev, [name]: undefined }));
     }

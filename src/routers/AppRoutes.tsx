@@ -1,106 +1,46 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { ProtectedRoute } from '../pages/auth/ProtectedRoute';
-import { RoleBasedRoute } from '../pages/auth/RoleBasedRoute';
-import { LoginPage } from '../pages/auth/LoginPage';
-import { RegisterPage } from '../pages/auth/RegisterPage';
-import { ForgotPasswordPage } from '../pages/auth/ForgotPasswordPage';
-import { ResetPasswordPage } from '../pages/auth/ResetPasswordPage';
+import LoginPage from '../pages/auth/LoginPage';
+import RegisterPage from '../pages/auth/RegisterPage';
+import ForgotPasswordPage from '../pages/auth/ForgotPasswordPage';
+import ResetPasswordPage from '../pages/auth/ResetPasswordPage';
 import SettingsPage from '../pages/settings/SettingPage';
-// Lazy load protected pages (from other epics)
-const DashboardPage = React.lazy(() => import('src/pages/dashboard/DashboradPage'));
-const ItemsPage = React.lazy(() => import('src/pages/items/ItemsPage'));
-const CategoriesPage = React.lazy(() => import('src/pages/categories/CategoriesPage'));
-const SuppliersPage = React.lazy(() => import('src/pages/suppliers/SuppliersPage'));
-const StockManagementPage = React.lazy(() => import('src/pages/stock/StockInPage'));
-//const AlertsPage = React.lazy(() => import('src/pages/alert/alertPage'));
-const AnalyticsPage = React.lazy(() => import('src/pages/analytics/AnalyticsPage'));
+import ItemsPage from '../pages/items/ItemsPage';
+import CategoriesPage from '../pages/categories/CategoriesPage';
+import SuppliersPage from '../pages/suppliers/SuppliersPage';
+
+// Dashboard Page مؤقتة
+const DashboardPage = () => {
+  return (
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+        <h1 className="text-3xl font-bold text-blue-600 mb-4">Dashboard</h1>
+        <p className="text-gray-600">Welcome to Medical Inventory System!</p>
+        <p className="text-sm text-gray-400 mt-4">You are logged in successfully.</p>
+      </div>
+    </div>
+  );
+};
 
 export const AppRoutes: React.FC = () => {
   return (
-    <BrowserRouter>
-      <React.Suspense
-        fallback={
-          <div className="flex h-screen items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }
-      >
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
+    <Routes>
+      {/* Public Routes */}
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
 
-          {/* Protected Routes */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<DashboardPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            
-            {/* Items - Accessible by admin, manager, staff */}
-            <Route
-              path="/items"
-              element={
-                <RoleBasedRoute allowedRoles={['admin', 'manager', 'staff']}>
-                  <ItemsPage />
-                </RoleBasedRoute>
-              }
-            />
-            
-            {/* Categories - Accessible by admin, manager */}
-            <Route
-              path="/categories"
-              element={
-                <RoleBasedRoute allowedRoles={['admin', 'manager']}>
-                  <CategoriesPage />
-                </RoleBasedRoute>
-              }
-            />
-            
-            {/* Suppliers - Accessible by admin, manager, staff */}
-            <Route
-              path="/suppliers"
-              element={
-                <RoleBasedRoute allowedRoles={['admin', 'manager', 'staff']}>
-                  <SuppliersPage />
-                </RoleBasedRoute>
-              }
-            />
-            
-            {/* Stock Management - Accessible by admin, manager, staff */}
-            <Route
-              path="/stock"
-              element={
-                <RoleBasedRoute allowedRoles={['admin', 'manager', 'staff']}>
-                  <StockManagementPage />
-                </RoleBasedRoute>
-              }
-            />
-            
-           {/* {/* Alerts - Accessible by admin, manager, staff, viewer 
-            <Route
-              path="/alerts"
-              element={
-                <RoleBasedRoute allowedRoles={['admin', 'manager', 'staff', 'viewer']}>
-                  <AlertsPage />
-                </RoleBasedRoute>
-              }
-            />*/}
-            
-            {/* Analytics - Accessible by admin, manager, viewer */}
-            <Route
-              path="/analytics"
-              element={
-                <RoleBasedRoute allowedRoles={['admin', 'manager', 'viewer']}>
-                  <AnalyticsPage />
-                </RoleBasedRoute>
-              }
-            />
-            <Route path="/settings" element={<SettingsPage />} />
-          </Route>
-        </Routes>
-      </React.Suspense>
-    </BrowserRouter>
+      {/* Protected Routes */}
+      <Route element={<ProtectedRoute />}>
+        <Route path="/" element={<DashboardPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/items" element={<ItemsPage />} />
+        <Route path="/categories" element={<CategoriesPage />} />
+        <Route path="/suppliers" element={<SuppliersPage />} />
+      </Route>
+    </Routes>
   );
 };
