@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 interface ProfileImageUploadProps {
   avatar?: string;
   name: string;
-  onUpload: (file: File) => Promise<void>;
+  onUpload: (file: File) => Promise<{ avatarUrl: string }>;  // ✅ نفس النوع
   isLoading: boolean;
 }
 
@@ -26,8 +26,12 @@ const ProfileImageUpload: React.FC<ProfileImageUploadProps> = ({
       };
       reader.readAsDataURL(file);
       
-      // Upload
-      await onUpload(file);
+      // ✅ Upload
+      try {
+        await onUpload(file);
+      } catch (error) {
+        console.error('Upload failed:', error);
+      }
     }
   };
 

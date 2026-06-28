@@ -4,6 +4,8 @@ import settingsReducer from '../pages/settings/settingsSlice';
 import itemsReducer from '../pages/items/itemsSlice';
 import categoriesReducer from '../pages/categories/categoriesSlice';
 import suppliersReducer from '../pages/suppliers/suppliersSlice';
+import stockReducer from '../pages/stock/stockSlice';
+import alertsReducer from '../pages/alerts/alertsSlice'; 
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +14,8 @@ export const store = configureStore({
     items: itemsReducer,
     categories: categoriesReducer,
     suppliers: suppliersReducer,
+    stock: stockReducer,
+    alerts: alertsReducer, 
   },
 });
 

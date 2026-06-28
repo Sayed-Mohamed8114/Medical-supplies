@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store/store';
+import { RootState, AppDispatch } from '../../store/store';
 import {
   fetchProfile,
   updateProfile,
@@ -24,14 +24,10 @@ import {
   ThemeSettings,
   InventorySettings,
   Preferences,
-  SettingsState,
 } from './settings.types';
 
 export const useSettings = () => {
   const dispatch = useDispatch<AppDispatch>();
-  
-  
-  const settingsState = useSelector((state: RootState) => state.settings as SettingsState);
   
   const {
     profile,
@@ -42,9 +38,8 @@ export const useSettings = () => {
     isLoading,
     error,
     successMessage,
-  } = settingsState;
+  } = useSelector((state: RootState) => state.settings);
 
-  // Profile actions
   const loadProfile = useCallback(() => {
     dispatch(fetchProfile());
   }, [dispatch]);
@@ -73,7 +68,6 @@ export const useSettings = () => {
     [dispatch]
   );
 
-  // Notification Settings
   const loadNotificationSettings = useCallback(() => {
     dispatch(fetchNotificationSettings());
   }, [dispatch]);
@@ -86,7 +80,6 @@ export const useSettings = () => {
     [dispatch]
   );
 
-  // Theme Settings
   const loadThemeSettings = useCallback(() => {
     dispatch(fetchThemeSettings());
   }, [dispatch]);
@@ -99,7 +92,6 @@ export const useSettings = () => {
     [dispatch]
   );
 
-  // Inventory Settings
   const loadInventorySettings = useCallback(() => {
     dispatch(fetchInventorySettings());
   }, [dispatch]);
@@ -112,7 +104,6 @@ export const useSettings = () => {
     [dispatch]
   );
 
-  // Preferences
   const loadPreferences = useCallback(() => {
     dispatch(fetchPreferences());
   }, [dispatch]);
@@ -125,7 +116,6 @@ export const useSettings = () => {
     [dispatch]
   );
 
-  // Clear actions
   const handleClearError = useCallback(() => {
     dispatch(clearError());
   }, [dispatch]);
@@ -135,7 +125,6 @@ export const useSettings = () => {
   }, [dispatch]);
 
   return {
-    // State
     profile,
     notificationSettings,
     themeSettings,
@@ -144,24 +133,18 @@ export const useSettings = () => {
     isLoading,
     error,
     successMessage,
-    // Profile Actions
     loadProfile,
     updateProfile: handleUpdateProfile,
     updatePassword: handleUpdatePassword,
     uploadAvatar: handleUploadAvatar,
-    // Notification Actions
     loadNotificationSettings,
     updateNotificationSettings: handleUpdateNotificationSettings,
-    // Theme Actions
     loadThemeSettings,
     updateThemeSettings: handleUpdateThemeSettings,
-    // Inventory Actions
     loadInventorySettings,
     updateInventorySettings: handleUpdateInventorySettings,
-    // Preferences Actions
     loadPreferences,
     updatePreferences: handleUpdatePreferences,
-    // Clear Actions
     clearError: handleClearError,
     clearSuccessMessage: handleClearSuccessMessage,
   };

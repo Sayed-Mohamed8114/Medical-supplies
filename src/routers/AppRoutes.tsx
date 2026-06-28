@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { ProtectedRoute } from '../pages/auth/ProtectedRoute';
+import ProtectedRoute from '../pages/auth/ProtectedRoute';
 import LoginPage from '../pages/auth/LoginPage';
 import RegisterPage from '../pages/auth/RegisterPage';
 import ForgotPasswordPage from '../pages/auth/ForgotPasswordPage';
@@ -9,7 +9,7 @@ import SettingsPage from '../pages/settings/SettingPage';
 import ItemsPage from '../pages/items/ItemsPage';
 import CategoriesPage from '../pages/categories/CategoriesPage';
 import SuppliersPage from '../pages/suppliers/SuppliersPage';
-
+import StockPage from '../pages/stock/StockPage';
 // Dashboard Page مؤقتة
 const DashboardPage = () => {
   return (
@@ -40,6 +40,7 @@ export const AppRoutes: React.FC = () => {
         <Route path="/items" element={<ItemsPage />} />
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/suppliers" element={<SuppliersPage />} />
+        <Route path="/stock" element={<StockPage />} />
       </Route>
     </Routes>
   );

@@ -5,37 +5,44 @@ interface ThemeSettingsProps {
   settings: ThemeSettingsType;
   onUpdate: (settings: ThemeSettingsType) => Promise<void>;
   isLoading: boolean;
+  onThemeChange?: (theme: string) => void; // ✅ أضف هذا
 }
 
 const ThemeSettings: React.FC<ThemeSettingsProps> = ({
   settings,
   onUpdate,
   isLoading,
+  onThemeChange,
 }) => {
   const [localSettings, setLocalSettings] = useState(settings);
   const [isEditing, setIsEditing] = useState(false);
 
-  // ✅ Handle select change
+  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLocalSettings(prev => ({ ...prev, [name]: value }));
+    // ✅ طبق التغيير فوراً
+    if (onThemeChange && name === 'theme') {
+      onThemeChange(value);
+    }
+  };
+
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setLocalSettings(prev => ({ ...prev, [name]: value }));
   };
 
-  // ✅ Handle checkbox change
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
     setLocalSettings(prev => ({ ...prev, [name]: checked }));
   };
 
-  // ✅ Handle radio change
-  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setLocalSettings(prev => ({ ...prev, [name]: value }));
-  };
-
   const handleSave = async () => {
     await onUpdate(localSettings);
     setIsEditing(false);
+    // ✅ طبق التغييرات بعد الحفظ
+    if (onThemeChange) {
+      onThemeChange(localSettings.theme);
+    }
   };
 
   const handleCancel = () => {
@@ -48,21 +55,16 @@ const ThemeSettings: React.FC<ThemeSettingsProps> = ({
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold text-gray-800">Theme & Appearance</h2>
         {!isEditing && (
-          <button
-            onClick={() => setIsEditing(true)}
-            className="text-blue-600 hover:text-blue-700"
-          >
+          <button onClick={() => setIsEditing(true)} className="text-blue-600 hover:text-blue-700">
             Edit
           </button>
         )}
       </div>
 
       <div className="space-y-4">
-        {/* Theme Mode - Radio Buttons */}
+        {/* Theme Mode */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Theme Mode
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Theme Mode</label>
           <div className="flex gap-4">
             {['light', 'dark', 'system'].map((themeValue) => (
               <label key={themeValue} className="flex items-center gap-2">
@@ -81,11 +83,9 @@ const ThemeSettings: React.FC<ThemeSettingsProps> = ({
           </div>
         </div>
 
-        {/* Font Size - Select */}
+        {/* Font Size */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Font Size
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Font Size</label>
           <select
             name="fontSize"
             value={localSettings.fontSize}
@@ -99,7 +99,7 @@ const ThemeSettings: React.FC<ThemeSettingsProps> = ({
           </select>
         </div>
 
-        {/* Sidebar Collapsed - Checkbox */}
+        {/* Sidebar Collapsed */}
         <div className="flex items-center justify-between py-2">
           <div>
             <p className="font-medium text-gray-800">Collapsed Sidebar</p>
@@ -118,7 +118,7 @@ const ThemeSettings: React.FC<ThemeSettingsProps> = ({
           </label>
         </div>
 
-        {/* Compact View - Checkbox */}
+        {/* Compact View */}
         <div className="flex items-center justify-between py-2">
           <div>
             <p className="font-medium text-gray-800">Compact View</p>
@@ -140,17 +140,10 @@ const ThemeSettings: React.FC<ThemeSettingsProps> = ({
 
       {isEditing && (
         <div className="flex gap-3 mt-6 pt-4 border-t">
-          <button
-            onClick={handleSave}
-            disabled={isLoading}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
-          >
+          <button onClick={handleSave} disabled={isLoading} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50">
             {isLoading ? 'Saving...' : 'Save Changes'}
           </button>
-          <button
-            onClick={handleCancel}
-            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
-          >
+          <button onClick={handleCancel} className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
             Cancel
           </button>
         </div>
